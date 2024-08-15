@@ -1,15 +1,10 @@
-import sumar from "./sumador";
+import { handleBotInput } from './bot.js';
 
-const first = document.querySelector("#primer-numero");
-const second = document.querySelector("#segundo-numero");
-const form = document.querySelector("#sumar-form");
-const div = document.querySelector("#resultado-div");
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
-
-  div.innerHTML = "<p>" + sumar(firstNumber, secondNumber) + "</p>";
+document.getElementById('bot-button').addEventListener('click', function() {
+  const userInput = document.getElementById('userInput').value;
+  if (userInput.trim() !== "") {
+    const botResponse = handleBotInput(userInput);
+    document.getElementById('botResponse').textContent = botResponse;
+    document.getElementById('userInput').value = ''; // Limpiar el campo de entrada
+  }
 });
